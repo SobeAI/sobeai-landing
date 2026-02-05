@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobe AI — Crie produtos sem complicação</title>
+
+  <style>
+    :root{
+      --black:#0b0b0b;
+      --lime:#c6ff00;
+      --white:#ffffff;
+      --gray:#b5b5b5;
+      --card:#121212;
+      --border:#222;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    }
+
+    body{
+      background:var(--black);
+      color:var(--white);
+      line-height:1.5;
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+
+    header{
+      border-bottom:1px solid var(--border);
+      padding:18px 0;
+    }
+
+    .logo{
+      font-weight:900;
+      font-size:20px;
+    }
+
+    .logo span{
+      color:var(--lime);
+    }
+
+    section{
+      padding:70px 0;
+    }
+
+    h1{
+      font-size:40px;
+      margin-bottom:18px;
+    }
+
+    h2{
+      font-size:28px;
+      margin-bottom:14px;
+      color:var(--lime);
+    }
+
+    p{
+      color:var(--gray);
+      margin-bottom:14px;
+      font-size:18px;
+      max-width:720px;
+    }
+
+    .highlight{
+      color:var(--lime);
+      font-weight:800;
+    }
+
+    .btn{
+      display:inline-block;
+      background:var(--lime);
+      color:#000;
+      padding:14px 18px;
+      border-radius:10px;
+      font-weight:900;
+      text-decoration:none;
+      margin-top:10px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px;
+      margin-top:30px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      padding:22px;
+      border-radius:12px;
+    }
+
+    footer{
+      border-top:1px solid var(--border);
+      padding:30px 0;
+      text-align:center;
+      color:#777;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">Sobe<span>AI</span></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section>
+  <div class="wrap">
+    <h1>Criar produtos na sua loja não deveria ser demorado, caro ou complicado.</h1>
+
+    <p>
+      Muitos lojistas ainda perdem tempo com fotos improvisadas, descrições fracas e processos manuais.
+    </p>
+
+    <p class="highlight">
+      O Sobe AI faz tudo isso pra você.
+    </p>
+
+    <a class="btn" href="#teste">Comece agora</a>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section>
+  <div class="wrap">
+    <h2>Como funciona</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>1️⃣ Envie as fotos</h3>
+        <p>Fotos simples da frente e costas já são suficientes.</p>
+      </div>
+
+      <div class="card">
+        <h3>2️⃣ Escolha a modelo ideal</h3>
+        <p>Selecione o perfil que combina com seu público.</p>
+      </div>
+
+      <div class="card">
+        <h3>3️⃣ Preencha os dados</h3>
+        <p>Tecido, tamanhos, cores e preço.</p>
+      </div>
+
+      <div class="card">
+        <h3>4️⃣ Revise e publique</h3>
+        <p>Veja tudo pronto antes de enviar para sua loja.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CAPTURA -->
+<section id="teste">
+  <div class="wrap">
+    <h2>Pronto para criar seu primeiro produto?</h2>
+
+    <p>
+      Entre na versão de teste e veja em minutos como fica.
+    </p>
+
+    <form>
+      <input placeholder="Seu nome" style="padding:12px;margin:6px;width:100%;max-width:320px;"><br>
+      <input placeholder="Seu e-mail" style="padding:12px;margin:6px;width:100%;max-width:320px;"><br>
+      <input placeholder="WhatsApp" style="padding:12px;margin:6px;width:100%;max-width:320px;"><br>
+
+      <br>
+      <button class="btn">Quero testar</button>
+    </form>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 — Sobe AI • sobeai.app.br
+</footer>
+
+</body>
+</html>
