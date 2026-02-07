@@ -626,6 +626,112 @@
   <!-- SEÇÃO FINAL (mantive ancoragem se você quiser rolar) -->
   <section id="teste">
     <div class="wrap">
+      <section class="section" id="upload">
+  <div class="container">
+    <div class="card" style="padding:20px;">
+      <h2 style="margin:0 0 8px;">Teste do MVP (Upload)</h2>
+      <p class="muted" style="margin:0 0 16px;">
+        Envie 2 fotos (frente e costas). Por enquanto o MVP cria o produto como <b>rascunho</b> na Shopify.
+      </p>
+
+      <div style="display:grid; gap:12px; grid-template-columns:1fr; max-width:520px;">
+        <label>
+          <div style="font-weight:600; margin-bottom:6px;">Título do produto</div>
+          <input id="up_title" type="text" placeholder="Vestido elegante" style="width:100%; padding:12px; border-radius:10px; border:1px solid #222; background:#0f0f0f; color:#fff;">
+        </label>
+
+        <label>
+          <div style="font-weight:600; margin-bottom:6px;">Preço (R$)</div>
+          <input id="up_price" type="text" placeholder="199,90" style="width:100%; padding:12px; border-radius:10px; border:1px solid #222; background:#0f0f0f; color:#fff;">
+        </label>
+
+        <label>
+          <div style="font-weight:600; margin-bottom:6px;">Tamanhos</div>
+          <input id="up_sizes" type="text" placeholder="P, M, G" style="width:100%; padding:12px; border-radius:10px; border:1px solid #222; background:#0f0f0f; color:#fff;">
+        </label>
+
+        <label>
+          <div style="font-weight:600; margin-bottom:6px;">Tecido</div>
+          <input id="up_fabric" type="text" placeholder="Linho, viscose..." style="width:100%; padding:12px; border-radius:10px; border:1px solid #222; background:#0f0f0f; color:#fff;">
+        </label>
+
+        <label>
+          <div style="font-weight:600; margin-bottom:6px;">Foto frente</div>
+          <input id="up_front" type="file" accept="image/*" style="width:100%; color:#bbb;">
+        </label>
+
+        <label>
+          <div style="font-weight:600; margin-bottom:6px;">Foto costas</div>
+          <input id="up_back" type="file" accept="image/*" style="width:100%; color:#bbb;">
+        </label>
+
+        <button class="btn primary" id="up_btn" style="width:fit-content;">
+          Criar rascunho na Shopify
+        </button>
+
+        <div id="up_status" class="muted" style="font-size:14px;"></div>
+        <pre id="up_out" style="margin:0; padding:12px; border-radius:12px; background:#0b0b0b; border:1px solid #222; color:#c6ff00; overflow:auto;"></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  async function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result); // data:image/...;base64,xxxx
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  const btn = document.getElementById("up_btn");
+  const statusEl = document.getElementById("up_status");
+  const outEl = document.getElementById("up_out");
+
+  btn.addEventListener("click", async () => {
+    try {
+      outEl.textContent = "";
+      statusEl.textContent = "Enviando...";
+
+      const title = document.getElementById("up_title").value || "Produto teste (SobeAI)";
+      const price = document.getElementById("up_price").value || "199,90";
+      const sizes = document.getElementById("up_sizes").value || "P, M, G";
+      const fabric = document.getElementById("up_fabric").value || "Não informado";
+
+      const frontFile = document.getElementById("up_front").files[0];
+      const backFile  = document.getElementById("up_back").files[0];
+
+      if (!frontFile || !backFile) {
+        statusEl.textContent = "Envie as duas fotos (frente e costas).";
+        return;
+      }
+
+      // Por enquanto, enviamos base64 só para validar upload no front.
+      // A API ainda vai ignorar essas imagens (vamos implementar já já).
+      const image_front = await fileToBase64(frontFile);
+      const image_back  = await fileToBase64(backFile);
+
+      const body = { title, price, sizes, fabric, image_front, image_back };
+
+      const r = await fetch("/api/upload-product", {
+        method: "POST",
+        headers: { "Content-Type":"application/json" },
+        body: JSON.stringify(body)
+      });
+
+      const json = await r.json().catch(() => ({}));
+      outEl.textContent = JSON.stringify(json, null, 2);
+
+      if (json.ok) statusEl.textContent = "✅ Produto rascunho criado! Veja na Shopify.";
+      else statusEl.textContent = "⚠️ Erro ao criar. Veja detalhes abaixo.";
+    } catch (e) {
+      statusEl.textContent = "⚠️ Erro inesperado.";
+      outEl.textContent = String(e);
+    }
+  });
+</script>
       <h2>Vamos colocar sua loja no ar mais rápido</h2>
       <p>Se você quer testar agora, fale comigo no WhatsApp.</p>
 
